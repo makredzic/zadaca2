@@ -8,7 +8,7 @@ std::vector<std::string> loadWords(const std::string& words) {
   std::vector<std::string> dictionary;
   std::string word;
   while (dictionaryFile >> word) {
-  dictionary.push_back(std::move(word));
+    dictionary.push_back(std::move(word));
   }
   return dictionary;
 }
@@ -22,7 +22,7 @@ std::vector<std::string> HammingDistance (const std::vector<std::string> & dicti
 
     if (usersWord.size() == dictionary.at(i).size()) {
       for (int k=0; k<usersWord.size(); ++k) {
-        if(usersWord.at(k) != (dictionary.at(i)).at(k)) {
+        if(usersWord.at(k) != dictionary.at(i).at(k)) {
           j++; 
           if (j<2) words.push_back(dictionary.at(i));
         } 
@@ -37,7 +37,7 @@ std::vector<std::string> HammingDistance (const std::vector<std::string> & dicti
 
 int main() { 
 
-  std::vector<std::string> dictionary = loadWords("words.txt");
+  std::vector<std::string> dictionary = loadWords("../zad1/words.txt");
   std::string usersWord;
 
   std::cout << "Insert a word: ";
