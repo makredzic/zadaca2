@@ -22,6 +22,11 @@ std::vector<std::string> getResults (const std::vector<std::string> & dictionary
 // Returns -1 if the words are not equal length
 // int x = hammingDistance("Hello", "Hrllo");
 
+  for (const std::string & word : dictionary) {
+    short x = hammingDistance(word, usersWord);
+    if (x != -1 && x < 2) words.push_back(usersWord);
+  } 
+
   return words;
 
 }
@@ -37,7 +42,7 @@ int main() {
   std::vector<std::string> results = getResults(dictionary, usersWord);
 
   if (results.size() != 0) {
-    for (std::string &word : results) std::cout << word << std::endl;
+    for (const std::string &word : results) std::cout << word << std::endl;
   } else std::cout << "Couldn't find words with distance less than 2." << std::endl;
 
 
