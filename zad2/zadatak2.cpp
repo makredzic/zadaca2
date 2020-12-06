@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include "hamming.h"
 
 std::vector<std::string> loadWords(const std::string& words) {
   std::ifstream dictionaryFile(words);
@@ -14,22 +15,12 @@ std::vector<std::string> loadWords(const std::string& words) {
 }
 
 
-std::vector<std::string> HammingDistance (const std::vector<std::string> & dictionary, const std::string& usersWord) {
+std::vector<std::string> getResults (const std::vector<std::string> & dictionary, const std::string& usersWord) {
   std::vector<std::string> words;
 
-  for (int i=0; i<dictionary.size(); ++i) {
-    int j=0;
-
-    if (usersWord.size() == dictionary.at(i).size()) {
-      for (int k=0; k<usersWord.size(); ++k) {
-        if(usersWord.at(k) != dictionary.at(i).at(k)) {
-          j++; 
-          if (j<2) words.push_back(dictionary.at(i));
-        } 
-      }
-    }
-
-  }
+// Returns the Hamming distance (int) between the 2 arguments
+// Returns -1 if the words are not equal length
+// int x = hammingDistance("Hello", "Hrllo");
 
   return words;
 
@@ -43,7 +34,7 @@ int main() {
   std::cout << "Insert a word: ";
   std::cin >> usersWord;
 
-  std::vector<std::string> results = HammingDistance(dictionary, usersWord);
+  std::vector<std::string> results = getResults(dictionary, usersWord);
 
   if (results.size() != 0) {
     for (std::string &word : results) std::cout << word << std::endl;
